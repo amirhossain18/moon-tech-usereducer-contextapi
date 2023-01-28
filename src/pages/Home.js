@@ -1,16 +1,22 @@
-import React from "react";
+
 import ProductCard from "../components/ProductCard";
 import { useProducts } from "../context/ProductProvider";
-
+import '../App.css'
+  
 const Home = () => {
-  const {
-    state: { products, loading, error },
-  } = useProducts();
+  
+ 
 
+
+  const {
+    state 
+    : { products, loading, error },
+  } = useProducts();
+   
   let content;
 
   if (loading) {
-    content = <p>Loading</p>;
+    content = <div className="loader"> </div>
   }
 
   if (error) {
@@ -29,7 +35,7 @@ const Home = () => {
 
   return (
     <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 max-w-7xl gap-14 mx-auto my-10'>
-      {content}
+      {content}  
     </div>
   );
 };

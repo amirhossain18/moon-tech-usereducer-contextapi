@@ -3,14 +3,11 @@ import React, {
   useContext,
   useEffect,
   useReducer,
-  useState,
+ 
 } from "react";
-import { actionTypes } from "../state/ProductState/actionTypes";
-import {
-  productReducer,
-  initialState,
-} from "../state/ProductState/productReducer";
 
+import {productReducer , initialState} from '../state/ProductState/productReducer'
+import { actionTypes } from "../state/ProductState/actionTypes";
 const PRODUCT_CONTEXT = createContext();
 
 const ProductProvider = ({ children }) => {
@@ -19,15 +16,17 @@ const ProductProvider = ({ children }) => {
   console.log(state);
 
   useEffect(() => {
-    dispatch({ type: actionTypes.FETCHING_START });
-    fetch("http://localhost:5000/products")
+ 
+    dispatch({type:actionTypes.FETCHING_START})
+    fetch("https://raw.githubusercontent.com/mir-hussain/moon-tech-usereducer-contextapi/main/products.json")
       .then((res) => res.json())
-      .then((data) =>
-        dispatch({ type: actionTypes.FETCHING_SUCCESS, payload: data.data })
-      )
-      .catch(() => {
-        dispatch({ type: actionTypes.FETCHING_ERROR });
-      });
+      .then((data) => 
+   
+        dispatch({type:actionTypes.FETCHING_SUCCESS, payload: data})
+      ).catch(()=>{
+        dispatch({type: actionTypes.FETCHING_ERROR});
+      })
+    
   }, []);
 
   const value = {
